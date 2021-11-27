@@ -1,0 +1,13 @@
+{
+	"marathon_button": "/html/body/div[2]/header/div/div/nav/div[1]/ul/li[2]/a",
+    "login_popup": "/html/body/app-root/div/xp-header/div/div/div[3]/div[2]/button[1]",
+    "user_control_panel": "//*[@class='user-controls-body']",
+    "login_control_panel": "//*[contains(@class, 'user-controls-login-btns')]",
+    "login_popup_username_field": "/html/body/app-root/div/xp-popup/div/ng-component/div/div[2]/div/div[2]/form/div[3]/label/input",
+    "login_popup_password_field": "/html/body/app-root/div/xp-popup/div/ng-component/div/div[2]/div/div[2]/form/div[4]/label/input",
+    "login_popup_button": "/html/body/app-root/div/xp-popup/div/ng-component/div/div[2]/div/div[2]/form/div[6]/button",
+	"logout_button": "/html/body/app-root/div/xp-header/div/div/div[4]/button",
+    "reward_button": "/html/body/main/div[2]/div[1]/div[1]/div[2]/div[2]/button[4]",
+    "reward_button_not_available": "//*[@class='new-web-event__random-box1-btn-free-not-available']",
+    "rewards_balance": "/html/body/main/div[2]/div[1]/div[2]/div[1]/div[1]/span[1]"
+}
