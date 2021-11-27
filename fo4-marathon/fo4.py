@@ -288,8 +288,8 @@ class Bot:
         self.__logger.info("Session ended.")
 
 def main():
-    FO4_bot = Bot()
-    FO4_bot.read_config()
-    FO4_bot.start()
+    _101xp_fo4_bot = Bot()
+    _101xp_fo4_bot.read_config()
+    _101xp_fo4_bot.start()
 
 main()
