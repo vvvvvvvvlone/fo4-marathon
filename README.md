@@ -10,13 +10,13 @@
 При ошибке получения вместо баланса вы увидите соответствующее сообщение.  
 Все тоже самое + стейтменты со статусами входов и выходов выводятся в основную консоль.
 
-## <a name="requirements"></a> Требования
+## Требования
 - Chromedriver  
 Программа работает на базе браузера Google Chrome, поэтому для ее работы нужен [вебдрайвер](https://chromedriver.chromium.org/) этого браузера.  
 Версия [вебдрайвера](https://chromedriver.chromium.org/) обязательно должна совпадать с текущей версией браузера. [Подробнее об установке chromedriver](https://chromedriver.chromium.org/getting-started).
 
 ## Установка
-Скачиваем [Chromedriver](#requirements) и актуальный релиз [отсюда](https://github.com/vvvvvvvvlone/fo4-marathon/releases) и переходим к настройке.
+Скачиваем [Chromedriver](#требования) и актуальный релиз [отсюда](https://github.com/vvvvvvvvlone/fo4-marathon/releases) и переходим к настройке.
 
 ## Настройка
 1. Разархивируем скачанный релиз и [Chromedriver](#requirements) в одну папку.
