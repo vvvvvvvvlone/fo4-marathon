@@ -1,5 +1,6 @@
 import sys
 import time
+import pathlib
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -52,7 +53,7 @@ class ChromeDriver:
         try:
             chrome_options = webdriver.ChromeOptions()
             chrome_options.add_argument('--log-level=3')
-            self.__driver = webdriver.Chrome(options = chrome_options)
+            self.__driver = webdriver.Chrome(executable_path = (str(pathlib.Path().resolve()) + "\chromedriver.exe"), options = chrome_options)
         except WebDriverException:
             error_logger.error("Unable to start a WebDriver session.")
             sys.exit("An error has occurred, see the log file. ('{}')".format(error_logger.handlers[0].baseFilename))

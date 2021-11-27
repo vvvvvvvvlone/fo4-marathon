@@ -369,3 +369,4 @@ dist/
 error.log
 result.log
 data.txt
+chromedriver.exe
