@@ -13,7 +13,7 @@
 ## Требования
 - Chromedriver  
 Программа работает на базе браузера Google Chrome, поэтому для ее работы нужен [вебдрайвер](https://chromedriver.chromium.org/) этого браузера.  
-Версия [вебдрайвера](https://chromedriver.chromium.org/) обязательно должна совпадать с текущей версией браузера. [Подробнее об установке chromedriver](https://chromedriver.chromium.org/getting-started).
+Версия [вебдрайвера](https://chromedriver.chromium.org/) обязательно должна совпадать с текущей версией браузера. [Подробнее об установке Chromedriver](https://chromedriver.chromium.org/getting-started).
 
 ## Установка
 Скачиваем [Chromedriver](#требования) и актуальный релиз [отсюда](https://github.com/vvvvvvvvlone/fo4-marathon/releases) и переходим к настройке.
