@@ -122,8 +122,10 @@ class _101xpXPath:
     logout_button = "/html/body/app-root/div/xp-header/div/div/div[4]/button"
     reward_button = "//*[@id='rewards']/div[2]/div/div[2]/div/button"
     reward_button_new = "/html/body/main/div[2]/div[1]/div[1]/div[2]/div[1]/div/button"
+    reward_button_randombox = "/html/body/div[3]/section[1]/div/div[1]/button"
     rewards_balance = "//*[@id='rewards']/div[2]/div/div[2]/p"
     rewards_balance_new = "/html/body/main/div[2]/div[1]/div[2]/div[1]/div[1]/span[1]"
+    rewards_balance_randombox = "/html/body/div[3]/section[1]/div/div[2]/div/div[2]/aside/span"
 
 class _101xp(WebDriverObject):
     def __init__(self, login, password):
@@ -134,6 +136,7 @@ class _101xp(WebDriverObject):
         self.__balance = "0"
         self.__looted = False
         self.__href = "https://fo4.101xp.com/shop/firstautumnmarathon"
+        self.__href_randombox = "https://fo4.101xp.com/shop/randombox"
         if self.__search_for_marathon_link() is False:
             error_logger.error("Could not find a link to FO4 marathon.")
     def __search_for_marathon_link(self):
@@ -174,11 +177,18 @@ class _101xp(WebDriverObject):
             logout_button.click()
             return True
         return False
-    def __load_balance(self):
-        balance = self.driver.find_element(By.XPATH, _101xpXPath.rewards_balance)
+    def __load_balance(self, balance_xpath):
+        balance = self.driver.find_element(By.XPATH, balance_xpath)
         if balance is not None:
             return balance
         return None
+    def __loot(self, button_xpath):
+        reward_button = self.driver.wait_until(5, EC.element_to_be_clickable((By.XPATH, button_xpath)))
+        if reward_button is not None:
+            if reward_button.get_property('disabled') is False:
+                reward_button.click()
+                return True
+        return False
     def login(self):
         if self.driver.open_url("https://101xp.com/") is True:
             if self.__is_user_logged_out():
@@ -200,23 +210,25 @@ class _101xp(WebDriverObject):
                 self.__logged_in = False
                 return True
         return False
-    def loot(self):
+    def loot_marathon(self):
         if self.driver.open_url(self.__href) is True:
-            reward_button = self.driver.wait_until(5, EC.element_to_be_clickable((By.XPATH, _101xpXPath.reward_button)))
-            if reward_button is not None:
-                if reward_button.get_property('disabled') is False:
-                    reward_button.click()
-                    return True
+            if self.__loot(_101xpXPath.reward_button) is True:
+                return True
+        return False
+    def loot_randombox(self):
+        if self.driver.open_url(self.__href_randombox) is True:
+            if self.__loot(_101xpXPath.reward_button_randombox) is True:
+                return True
         return False
     def check_balance(self):
         if self.driver.open_url(self.__href) is True:
-            balance = self.__load_balance() 
+            balance = self.__load_balance(_101xpXPath.rewards_balance) 
             if balance is not None:
                 self.__balance = balance.text
         return self.__balance
-    def check_balance_new(self):
-        if self.driver.open_url(self.__href) is True:
-            balance = self.__load_balance() 
+    def check_balance_randombox(self):
+        if self.driver.open_url(self.__href_randombox) is True:
+            balance = self.__load_balance(_101xpXPath.rewards_balance_randombox) 
             if balance is not None:
                 self.__balance = balance.text
         return self.__balance
@@ -246,7 +258,7 @@ class Bot:
         self.__logger = Logger.setup("result", "result.log", logging.INFO, logging.Formatter("%(asctime)s (%(levelname)s): %(message)s"))
         self.__data = None
     def __loot(self, account, d):
-        if account.loot() is True:
+        if account.loot_randombox() is True:
             PrintEx.info("Successfully looted")
             return True
         else:
@@ -277,7 +289,7 @@ class Bot:
                     PrintEx.info("Trying again..")
                     self.__loot(account, d)
                 time.sleep(3)
-                account.check_balance()
+                account.check_balance_randombox()
                 PrintEx.info("Balance: {}".format(account.balance))
                 self.__logger.info("{}: {} badge(s).".format(d, account.balance)) 
                 PrintEx.info("Logout..")
